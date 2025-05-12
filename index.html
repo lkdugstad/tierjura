@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TierJura - Digitale Plattform für Tierschutzrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --accent-color: #8b5cf6;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .modern-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .modern-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .definition-showcase {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .definition-showcase::before {
+            content: '§';
+            position: absolute;
+            right: -20px;
+            top: -40px;
+            font-size: 200px;
+            color: rgba(59, 130, 246, 0.1);
+            font-weight: bold;
+        }
+
+        .definition-term {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .definition-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .meta-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            border: 1px solid #e5e7eb;
+        }
+
+        .meta-tag.primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .tech-stack {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 5rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .interactive-demo {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            margin: 3rem 0;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--light-bg);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-icon {
+            color: var(--text-light);
+            margin-right: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+        }
+
+        .result-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .result-item:hover {
+            background: var(--light-bg);
+            padding-left: 2rem;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            background: var(--light-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tag:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            border-radius: 30px;
+            margin: 5rem 0;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button.primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>TierJura</h1>
+            <p class="subtitle">Die digitale Plattform für präzise Rechtsdefinitionen im Tierschutzrecht</p>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Juristische Präzision trifft digitale Innovation</h2>
+            
+            <div class="interactive-demo">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Begriff eingeben, z.B. 'Vernünftiger Grund'">
+                </div>
+                
+                <div class="definition-showcase">
+                    <div class="definition-term">„Vernünftiger Grund" gem. § 1 S. 2 TierSchG</div>
+                    <div class="definition-content">
+                        Ein vernünftiger Grund liegt vor, wenn das Handeln dem Schutz höherwertiger Rechtsgüter dient und die Beeinträchtigung des Tierwohls in einem angemessenen Verhältnis zum verfolgten Zweck steht. Die Rechtfertigung erfordert eine Güterabwägung zwischen den betroffenen Interessen unter Berücksichtigung des Staatziels Tierschutz nach Art. 20a GG.
+                    </div>
+                    <div class="meta-tags">
+                        <span class="meta-tag primary">§ 1 TierSchG</span>
+                        <span class="meta-tag">Art. 20a GG</span>
+                        <span class="meta-tag">BVerfGE 127, 183</span>
+                        <span class="meta-tag">Aktualisiert: März 2024</span>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <strong>Güterabwägung</strong> - Verfahren zur Gewichtung kollidierender Rechtsgüter...
+                </div>
+                <div class="result-item">
+                    <strong>Staatsziel Tierschutz</strong> - Verfassungsrechtliche Verankerung des Tierschutzes...
+                </div>
+                <div class="result-item">
+                    <strong>Höherwertige Rechtsgüter</strong> - Rechtsgüter von übergeordnetem Rang...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">Innovative Features für modernes Recht</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Echtzeitsuche</h3>
+                    <p>Intelligente Volltextsuche mit Autokorrektur und semantischer Erkennung verwandter Begriffe</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Vernetzte Definitionen</h3>
+                    <p>Automatische Verlinkung zwischen Begriffen, Gesetzen und Urteilen für nahtlose Navigation</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>Visualisierung</h3>
+                    <p>Interaktive Diagramme zur Darstellung von Rechtssystematik und Begriffshierarchien</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Live-Updates</h3>
+                    <p>Automatische Benachrichtigungen bei Gesetzesänderungen und neuen Urteilen</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Kollaboration</h3>
+                    <p>Expertenkommentare und Diskussionsforen für fachlichen Austausch</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile First</h3>
+                    <p>Optimiert für alle Geräte - vom Smartphone bis zum Desktop</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Unsere Vision in Zahlen</h2>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Rechtsbegriffe</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Rechtsgebiete</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Expert:innen</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tag Cloud -->
+    <section class="section" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">Themenbereiche</h2>
+            
+            <div class="tag-cloud">
+                <span class="tag">Nutztierhaltung</span>
+                <span class="tag">Tierversuche</span>
+                <span class="tag">Heimtierhaltung</span>
+                <span class="tag">Tiertransporte</span>
+                <span class="tag">Schlachtrecht</span>
+                <span class="tag">Artenschutz</span>
+                <span class="tag">Zucht</span>
+                <span class="tag">Wildtiere</span>
+                <span class="tag">Zirkustiere</span>
+                <span class="tag">Veterinärrecht</span>
+                <span class="tag">EU-Recht</span>
+                <span class="tag">Ordnungsrecht</span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Gemeinsam für digitale Rechtssicherheit</h2>
+                <p style="font-size: 1.25rem; opacity: 0.95;">
+                    Werden Sie Teil der TierJura-Community und gestalten Sie die Zukunft des Tierschutzrechts
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button primary">Jetzt erkunden</a>
+                    <a href="#" class="cta-button secondary">Mitgestalten</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Über uns</a>
+                <a href="#">API</a>
+                <a href="#">Dokumentation</a>
+                <a href="#">Beitragen</a>
+                <a href="#">Kontakt</a>
+            </div>
+            <p>&copy; 2025 TierJura | Open Source</p>
+        </div>
+    </footer>
+</body>
+</html>
